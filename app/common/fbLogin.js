@@ -1,5 +1,5 @@
 /*jshint browser: true, esversion: 6*/
-/* global $, FB, localStorage, ajaxFunctions */
+/* global $, FB, localStorage */
 
 window.fbAsyncInit = function() {
     FB.init({
@@ -27,7 +27,7 @@ window.fbAsyncInit = function() {
 
 
 //Check for login status change
-function statusChangeCallback(response) {;
+function statusChangeCallback(response) {
     if (response.status === 'connected') loggedIn();
     else loggedOut();
 }

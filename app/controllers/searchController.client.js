@@ -1,10 +1,11 @@
+/*jshint browser: true, esversion: 6*/
+/* global $, FB, localStorage, ajaxFunctions */
+
 'use strict';
 
 (function () {
 
-   var addButton = document.querySelector('.btn-add');
-   var deleteButton = document.querySelector('.btn-delete');
-   var clickNbr = document.querySelector('#click-nbr');
+   var searchBtn = document.querySelector('#searchBtn');
    var apiUrl = appUrl + '/api/:id/clicks';
 
    function updateClickCount (data) {
@@ -14,7 +15,7 @@
 
    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount));
 
-   addButton.addEventListener('click', function () {
+   searchBtn.addEventListener('click', function () {
 
       ajaxFunctions.ajaxRequest('POST', apiUrl, function () {
          ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
@@ -22,12 +23,12 @@
 
    }, false);
 
-   deleteButton.addEventListener('click', function () {
+   // deleteButton.addEventListener('click', function () {
 
-      ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
-         ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
-      });
+   //    ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
+   //       ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
+   //    });
 
-   }, false);
+   // }, false);
 
 })();
