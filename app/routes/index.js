@@ -38,14 +38,14 @@ module.exports = function (app, passport) {
 
 	app.route('/api/:id')
 		.get(isLoggedIn, function (req, res) {
-			res.json(req.user.github);
+			res.json(req.user.facebook);
 		});
 
-	app.route('/auth/github')
-		.get(passport.authenticate('github'));
+	app.route('/auth/fb')
+		.get(passport.authenticate('facebook'));
 
-	app.route('/auth/github/callback')
-		.get(passport.authenticate('github', {
+	app.route('/auth/fb/callback')
+		.get(passport.authenticate('facebook', {
 			successRedirect: '/',
 			failureRedirect: '/login'
 		}));
