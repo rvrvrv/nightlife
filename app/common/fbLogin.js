@@ -1,5 +1,5 @@
 /*jshint browser: true, esversion: 6*/
-/* global $, ajaxFunctions */
+/* global $, FB, localStorage, ajaxFunctions */
 
 window.fbAsyncInit = function() {
     FB.init({
@@ -15,7 +15,7 @@ window.fbAsyncInit = function() {
 
 };
 
-// Load the FB SDK asynchronously
+//Load the FB SDK asynchronously
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -27,13 +27,12 @@ window.fbAsyncInit = function() {
 
 
 //Check for login status change
-function statusChangeCallback(response) {
+function statusChangeCallback(response) {;
     if (response.status === 'connected') loggedIn();
-    else document.getElementById('status').innerHTML = 'Please log ' +
-            'into this app.';
+    else loggedOut();
 }
 
-// Called after Login button is clicked
+//Called after Login button is clicked
 function checkLoginState() {
     FB.getLoginStatus(function(response) {
         statusChangeCallback(response);
@@ -41,10 +40,29 @@ function checkLoginState() {
 }
 
 
-// Update page with logged-in user's info
+//Update page with logged-in user's info
 function loggedIn() {
-    FB.api('/me?fields=first_name, last_name, picture', function(response) {
-        document.getElementById('status').innerHTML =
-            'Thanks for logging in, ' + response.first_name + '!';
+    FB.api('/me?fields=first_name, last_name, picture', function(user) {
+        console.log(user);
+        localStorage.setItem('rv-nightlife-id', user.id);
+        $('#userInfo').html(`
+        <li><img class="valign left-align" src="${user.picture.data.url}" alt="${user.first_name} ${user.last_name}"></li>
+        <li class="hide-on-small-only">${user.first_name}</li>`);
+        $('#loginBtn').hide();
+        $('#logoutBtn').show();
     });
 }
+
+//Update page with logged-out view
+function loggedOut() {
+
+    $('#userInfo').empty();
+    $('#logoutBtn').hide();
+    $('#loginBtn').show();
+}
+
+//Log out the user
+$('#logoutBtn').click(() => FB.logout((resp) => {
+    localStorage.removeItem('rv-nightlife-id');
+    checkLoginState();
+}));

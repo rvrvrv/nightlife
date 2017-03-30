@@ -12,7 +12,6 @@ module.exports = function (app) {
 			res.sendFile(path + '/public/index.html');
 		});
 
-
 	app.route('/api/:id')
 		.get(function (req, res) {
 			res.json(req.user.facebook);
