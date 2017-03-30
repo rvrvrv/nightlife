@@ -2,6 +2,7 @@
 
 var path = process.cwd();
 var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+var yelpSearch = require(path + '/app/controllers/yelpSearch.server.js');
 
 module.exports = function (app) {
 
@@ -17,8 +18,13 @@ module.exports = function (app) {
 			res.json(req.user.facebook);
 		});
 
-	app.route('/api/:id/clicks')
+	app.route('/api/list/')
 		.get(clickHandler.getClicks)
 		.post(clickHandler.addClick)
 		.delete(clickHandler.resetClicks);
+	
+	app.route('/api/list/:loc')
+		.get(function(req, res) { //Show one poll
+			yelpSearch(req.params.loc, res);
+		});
 };

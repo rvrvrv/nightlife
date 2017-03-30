@@ -1,34 +1,21 @@
 /*jshint browser: true, esversion: 6*/
 /* global $, FB, localStorage, ajaxFunctions */
-
 'use strict';
 
-(function () {
+const searchBtn = document.querySelector('#searchBtn');
+const apiUrl = '/api/list';
 
-   var searchBtn = document.querySelector('#searchBtn');
-   var apiUrl = appUrl + '/api/:id/clicks';
+function updateResults(data) {
+   let list= JSON.parse(data);
+   $('#list').html(list);
+}
 
-   function updateClickCount (data) {
-      var clicksObject = JSON.parse(data);
-      clickNbr.innerHTML = clicksObject.clicks;
-   }
+// ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateResults));
 
-   ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount));
+$('#searchBtn').click(() => search($('#locationInput').val()));
 
-   searchBtn.addEventListener('click', function () {
-
-      ajaxFunctions.ajaxRequest('POST', apiUrl, function () {
-         ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
-      });
-
-   }, false);
-
-   // deleteButton.addEventListener('click', function () {
-
-   //    ajaxFunctions.ajaxRequest('DELETE', apiUrl, function () {
-   //       ajaxFunctions.ajaxRequest('GET', apiUrl, updateClickCount);
-   //    });
-
-   // }, false);
-
-})();
+function search(location) {
+   ajaxFunctions.ajaxRequest('GET', `${apiUrl}/${location}`, () => {
+      // ajaxFunctions.ajaxRequest('GET', apiUrl, updateResults);
+   });
+}
