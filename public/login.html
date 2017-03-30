@@ -8,22 +8,20 @@
 </head>
 
 <body>
-	<div class="container">
-		<div class="login">
-			<p class="title-text">Nightlife Coordination App</p>
+	<script>
 
-			<a href="/auth/fb">
-				<button class="btn" id="login-btn">
-					<i class="fa fa-2x fa-facebook-square"></i>
-					&nbsp;&nbsp;Login with Facebook
-				</button>
-			</a>
-		</div>
+	</script>
+
+	<fb:login-button scope="public_profile" auto_logout_link- "true" size="large" onlogin="checkLoginState();">
+	</fb:login-button>
+
+	<div id="status">
 	</div>
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="common/main.js"></script>
+<script type="text/javascript" src="common/fbLogin.js"></script>
 <script src="https://use.fontawesome.com/21a9ccba03.js"></script>
 <script type="text/javascript" src="common/ajax-functions.js"></script>
 

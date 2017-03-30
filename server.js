@@ -23,10 +23,7 @@ app.use(session({
 	saveUninitialized: true
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
-
-routes(app, passport);
+routes(app);
 
 var port = process.env.PORT || 8080;
 app.listen(port,  function () {
