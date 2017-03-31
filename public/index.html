@@ -26,7 +26,17 @@
     <a class="btn waves-effect waves-red hidden" id="logoutBtn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Log Out</a>
   </div>
   <div class="row">
-    <input type="text" id="locationInput"></input><button id="searchBtn">Search</button>
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="prefix fa fa-3x fa-moon-o"></i>
+          <input id="locationInput" type="text" class="validate">
+          <label for="locationInput">City Name, Zip Code, etc.</label>
+        </div>
+      </div>
+      <a class="btn waves-effect waves-purp" id="searchBtn">Search</a>
+    </form>
+  </div>
   <div id="list"></div>
 
 
@@ -37,4 +47,5 @@
 <script type="text/javascript" src="common/fbLogin.js"></script>
 <script type="text/javascript" src="common/ajax-functions.js"></script>
 <script type="text/javascript" src="controllers/searchController.client.js"></script>
+
 </html>

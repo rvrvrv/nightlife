@@ -1,5 +1,6 @@
 body {
     background: #222;
+    color: #fff;
 }
 
 .hidden {
@@ -8,6 +9,15 @@ body {
 
 .navbar-fixed {
     user-select: none;
+}
+
+#userInfo li {
+    margin: 0 5px;
+    font-size: 2em;
+}
+
+#userInfo img {
+    border-radius: 5px;
 }
 
 .fb-buttons {
@@ -19,20 +29,48 @@ body {
     vertical-align: bottom;
 }
 
+.btn {
+    background: #000;
+}
+
 #logoutBtn {
     position: fixed;
     right: 0;
     margin-top: -5px;
     padding: 0 15px;
-    background: #000;
     text-transform: capitalize;
 }
 
-#userInfo li {
-    margin: 0 5px;
-    font-size: 2em;
+#logoutBtn:hover {
+    background: #300;
 }
 
-#userInfo img {
-    border-radius: 5px;
+.input-field label {
+    color: #fff;
+}
+
+.input-field input[type=text]:focus+label {
+    color: #fff;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #fff;
+    box-shadow: 0 1px 0 0 #fff;
+}
+
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #311b92;
+    box-shadow: 0 1px 0 0 #311b92;
+}
+
+.input-field .prefix.active {
+    color: #4527a0;
+}
+
+#searchBtn:hover {
+    background: #311b92;
+}
+
+#searchBtn.waves-ripple {
+    background: #4527a0;
 }
