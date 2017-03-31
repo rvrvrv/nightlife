@@ -24,7 +24,7 @@ module.exports = function (app) {
 		.delete(clickHandler.resetClicks);
 	
 	app.route('/api/list/:loc')
-		.get(function(req, res) { //Show one poll
+		.get(function(req, res) { //Search via Yelp Fusion API
 			yelpSearch(req.params.loc, res);
 		});
 };

@@ -23,18 +23,18 @@
     <span id="loginBtn">
       <fb:login-button scope="public_profile" size="xlarge" onlogin="checkLoginState();"></fb:login-button>
       </span>
-    <a class="btn waves-effect waves-red hidden" id="logoutBtn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Log Out</a>
+    <a class="btn waves-effect waves-red hidden hide-on-small-only" id="logoutBtn"><i class="fa fa-sign-out"></i>&nbsp;&nbsp;Log Out</a>
   </div>
-  <div class="row">
-    <form class="col s12">
+  <div class="container">
+    <form id="locationForm">
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s8">
           <i class="prefix fa fa-3x fa-moon-o"></i>
           <input id="locationInput" type="text" class="validate">
           <label for="locationInput">City Name, Zip Code, etc.</label>
         </div>
+        <div class="input-field col s4"><a class="btn waves-effect waves-purp" id="searchBtn">Search</a></div>
       </div>
-      <a class="btn waves-effect waves-purp" id="searchBtn">Search</a>
     </form>
   </div>
   <div id="list"></div>

@@ -21,7 +21,7 @@ body {
 }
 
 .fb-buttons {
-    margin: 10px;
+    margin: 10px 10px 40px 10px;
     text-align: right;
 }
 
@@ -43,6 +43,10 @@ body {
 
 #logoutBtn:hover {
     background: #300;
+}
+
+#locationInput {
+    font-size: 2em;
 }
 
 .input-field label {
