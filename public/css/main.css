@@ -49,9 +49,6 @@ body {
     font-size: 2em;
 }
 
-.input-field label {
-    color: #fff;
-}
 
 .input-field input[type=text]:focus+label {
     color: #fff;
