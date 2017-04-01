@@ -5,27 +5,31 @@
 const searchBtn = document.querySelector('#searchBtn');
 const apiUrl = '/api/list';
 
+//Populate page with search results
 function updateResults(data) {
    let list = JSON.parse(data);
    console.log(list);
-   $('#list').html(list);
+   list.forEach(e => {
+      $('#list').append(e.name+'<br>');
+   });
 }
 
-// ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', apiUrl, updateResults));
 
-
-$('#searchBtn').click(() => validateSearch($('#locationInput').val()));
-$('#locationForm').on('submit', e => {
-   e.preventDefault();
-   validateSearch($('#locationInput').val());
-});
-
-//Ensure the location field isn't empty
-function validateSearch(loc) {
-   loc.trim() ? search(loc) : alert('Please enter a location');
-}
-
-//Search via AJAX call
+//Search for results via GET request
 function search(location) {
+   //First, ensure search field is populated
+   if (!location.trim()) return alert('Please enter a location');
+   //Then, perform search
    ajaxFunctions.ajaxRequest('GET', `${apiUrl}/${location}`, updateResults);
 }
+
+
+//Handle search button click...
+$('#searchBtn').click(() => search($('#locationInput').val()));
+
+//Handle enter-key submission from search field
+$('#locationForm').on('submit', e => {
+   e.preventDefault();
+   search($('#locationInput').val());
+});
+
