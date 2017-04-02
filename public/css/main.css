@@ -79,3 +79,13 @@ body {
 #searchBtn.waves-ripple {
     background: #4527a0;
 }
+
+.card-title {
+    font-size: 1.5em !important;
+    line-height: 95% !important;
+}
+
+.yelp {
+    color: red;
+    font-size: 1.3em;
+}
