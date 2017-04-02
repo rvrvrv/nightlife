@@ -7,6 +7,10 @@ body {
     display: none;
 }
 
+.error {
+    background: #a00;
+}
+
 .navbar-fixed {
     user-select: none;
     cursor: default;
@@ -50,7 +54,6 @@ body {
     font-size: 2em;
 }
 
-
 .input-field input[type=text]:focus+label {
     color: #fff;
 }
@@ -76,4 +79,3 @@ body {
 #searchBtn.waves-ripple {
     background: #4527a0;
 }
-

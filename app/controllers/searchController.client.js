@@ -1,5 +1,5 @@
 /*jshint browser: true, esversion: 6*/
-/* global $, FB, localStorage, ajaxFunctions */
+/* global $, ajaxFunctions, FB, localStorage, Materialize */
 'use strict';
 
 const apiUrl = '/api/list';
@@ -12,7 +12,7 @@ function updateResults(data) {
    $('#list').empty();
    list.forEach(e => {
       $('#list').append(`
-         <div class="col m6 l4">
+         <div class="col m4 l3">
             <div class="card small black">
                <div class="card-image waves-effect waves-block waves-light">
                   <img class="activator" src="${e.image_url}" alt="${e.name}">
@@ -37,7 +37,7 @@ function updateResults(data) {
 //Search for results via GET request
 function search(location) {
    //First, ensure search field is populated
-   if (!location.trim()) return alert('Please enter a location');
+   if (!location.trim()) return Materialize.toast('Please enter a valid location', 3000, 'error');
    //Then, perform search
    ajaxFunctions.ajaxRequest('GET', `${apiUrl}/${location}`, updateResults);
 }
