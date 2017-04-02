@@ -9,6 +9,7 @@ body {
 
 .navbar-fixed {
     user-select: none;
+    cursor: default;
 }
 
 #userInfo li {
@@ -75,3 +76,4 @@ body {
 #searchBtn.waves-ripple {
     background: #4527a0;
 }
+

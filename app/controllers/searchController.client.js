@@ -12,7 +12,7 @@ function updateResults(data) {
    $('#list').empty();
    list.forEach(e => {
       $('#list').append(`
-         <div class="col s12 m4">
+         <div class="col m6 l4">
             <div class="card small black">
                <div class="card-image waves-effect waves-block waves-light">
                   <img class="activator" src="${e.image_url}" alt="${e.name}">
