@@ -5,9 +5,8 @@ var Schema = mongoose.Schema;
 
 var Location = new Schema({
 	location: String,
-	attendees: [{
-		text: String
-	}]
+	attendees: [ {
+		user: String } ]
 });
 
 module.exports = mongoose.model('Location', Location);

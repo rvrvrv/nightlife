@@ -65,7 +65,7 @@ function updateAttending(data) {
    console.log(results);
    console.log('Updating attendance stats...');
    //If attending
-   $(`#${results}`).html('&nbsp;<i class="fa fa-2x fa-star"></i>&nbsp;Going!');
+   $(`#${results.location}`).html('&nbsp;<i class="fa fa-2x fa-star"></i>&nbsp;Going!');
 }
 
 //Handle attend link click
