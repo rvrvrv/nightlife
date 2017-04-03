@@ -9,7 +9,6 @@ function search(reqLocation, res) {
   };
   yelp.accessToken(process.env.YELP_APP_ID, process.env.YELP_APP_SECRET).then(response => {
     const client = yelp.client(response.jsonBody.access_token);
-
     client.search(searchRequest).then(response => {
       res.json(response.jsonBody.businesses);
     });

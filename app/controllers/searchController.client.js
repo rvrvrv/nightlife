@@ -2,42 +2,44 @@
 /* global $, ajaxFunctions, FB, localStorage, Materialize */
 'use strict';
 
-const apiUrl = '/api/list';
 const $btn = $('#searchBtn');
 let lastSearch = '';
 
 //Populate page with search results
-function updateResults(data) {
+function displayBusinesses(data) {
    let list = JSON.parse(data);
    console.log(list);
    //Clear previous search results
-   $('#list').empty();
-   list.forEach(e => {
+   $('#results').empty();
+   list.forEach((e, i) => {
       //Convert and round distance (in meters) to miles
       let distance = (e.distance * 0.000621371192).toFixed(1);
-      $('#list').append(`
-         <div class="col m6 l3">
-            <div class="card small black">
-               <div class="card-image waves-effect waves-block waves-light">
-                  <img class="activator" src="${e.image_url}" alt="${e.name}">
-               </div>
-               <div class="card-content black">
-                  <span class="card-title activator white-text">${e.name}
-                  <i class="material-icons right">more_vert</i></span>
-                  <p>${distance} mi.</p>
-                  <p><a href="#">I'm going</a></p>
-                </div>
-                <div class="card-reveal black">
-                  <span class="card-title white-text">${e.name}
-                  <i class="material-icons right">close</i></span>
-                  <p>${e.location.display_address.join('<br>')}
-                     <br><a href="tel:${e.phone}" target="_blank">${e.display_phone}</a>
-                  </p>
-                  <p><a class="yelp" href="${e.url}" target="_blank">View on Yelp <i class="fa fa-2x fa-yelp"></i></a></p>
-                </div>
+      //Animate each result entrance
+      setTimeout(() => {
+      $('#results').append(`
+            <div class="col m6 l3 animated flipInX">
+               <div class="card small black">
+                  <div class="card-image waves-effect waves-block waves-light">
+                     <img class="activator" src="${e.image_url}" alt="${e.name}">
+                  </div>
+                  <div class="card-content black">
+                     <span class="card-title activator white-text">${e.name}
+                     <i class="material-icons right">more_vert</i></span>
+                     <p>${distance} mi.<a class="attendLink right" data-loc="${e.id}"
+                        href="javascript:;" onclick="attend(this)">Attend&nbsp;<i class="fa fa-2x fa-star-o"></i></a></p>
+                   </div>
+                   <div class="card-reveal black">
+                     <span class="card-title white-text">${e.name}
+                     <i class="material-icons right">close</i></span>
+                     <p>${e.location.display_address.join('<br>')}
+                        <br><a href="tel:${e.phone}" target="_blank">${e.display_phone}</a>
+                     </p>
+                     <p><a class="yelp" href="${e.url}" target="_blank">View on Yelp&nbsp;<i class="fa fa-2x fa-yelp"></i></a></p>
+                   </div>
+                 </div>
               </div>
-           </div>
-      `);
+         `);
+      }, i * 100);
    });
    $btn.removeClass('disabled');
 	$btn.html('Search');
@@ -53,10 +55,22 @@ function search(location) {
    //If a new valid location was entered, perform the search
    $btn.addClass('disabled');
 	$btn.html('<i class="fa fa-spinner fa-spin fa-fw"></i>&nbsp;Searching');
-   ajaxFunctions.ajaxRequest('GET', `${apiUrl}/${location}`, updateResults);
+   ajaxFunctions.ajaxRequest('GET', `/api/list/${location}`, displayBusinesses);
    lastSearch = location.trim().toLowerCase();
 }
 
+//Handle attend link click
+function attend(link) {
+   let userId = localStorage.getItem('rv-nightlife-id');
+   //First, check to see if user is logged in
+   if (!userId) {
+      $('.fb-buttons').addClass('shake');
+      setTimeout(() => $('.fb-buttons').removeClass('shake'), 1000);
+      return Materialize.toast('Please log in to attend events', 2000, 'error');
+   }
+   //Then, update the database
+   let location = link.getAttribute('data-loc');
+}
 
 //Handle search button click
 $btn.click(() => search($('#locationInput').val()));

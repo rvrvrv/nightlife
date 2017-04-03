@@ -55,7 +55,6 @@ function loggedIn() {
 
 //Update page with logged-out view
 function loggedOut() {
-
     $('#userInfo').empty();
     $('#logoutBtn').hide();
     $('#loginBtn').show();

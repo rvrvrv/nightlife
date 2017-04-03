@@ -6,6 +6,7 @@
   <title>Nightlife Coordination App</title>
   <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
   <link rel="stylesheet" type="text/css" href="/public/css/main.css">
 </head>
 
@@ -19,7 +20,7 @@
       </div>
     </nav>
   </div>
-  <div class="fb-buttons">
+  <div class="fb-buttons animated">
     <span class="tooltipped" id="loginBtn" data-delay="50" data-tooltip="Log into Facebook to connect with friends">
       <fb:login-button scope="public_profile" size="xlarge" onlogin="checkLoginState();"></fb:login-button>
       </span>
@@ -44,7 +45,7 @@
       </div>
     </form>
   </div>
-  <div class="row" id="list"></div>
+  <div class="row" id="results"></div>
 
 
 </body>
