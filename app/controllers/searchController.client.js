@@ -25,7 +25,7 @@ function displayBusinesses(data) {
                   <div class="card-content black">
                      <span class="card-title activator white-text">${e.name}
                      <i class="material-icons right">more_vert</i></span>
-                     <p>${distance} mi.<a class="attendLink right" data-loc="${e.id}"
+                     <p>${distance} mi.<a class="attendLink right" id="${e.id}"
                         href="javascript:;" onclick="attend(this)">Attend&nbsp;<i class="fa fa-2x fa-star-o"></i></a></p>
                    </div>
                    <div class="card-reveal black">
@@ -59,6 +59,15 @@ function search(location) {
    lastSearch = location.trim().toLowerCase();
 }
 
+//Display user and guest attendance for each business
+function updateAttending(data) {
+   let results = JSON.parse(data);
+   console.log(results);
+   console.log('Updating attendance stats...');
+   //If attending
+   $(`#${results}`).html('&nbsp;<i class="fa fa-2x fa-star"></i>&nbsp;Going!');
+}
+
 //Handle attend link click
 function attend(link) {
    let userId = localStorage.getItem('rv-nightlife-id');
@@ -69,8 +78,9 @@ function attend(link) {
       return Materialize.toast('Please log in to attend events', 2000, 'error');
    }
    //Then, update the database
-   let location = link.getAttribute('data-loc');
+   ajaxFunctions.ajaxRequest('POST', `/api/attend/${link.getAttribute('id')}/${userId}`, updateAttending);
 }
+
 
 //Handle search button click
 $btn.click(() => search($('#locationInput').val()));

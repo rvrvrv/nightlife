@@ -18,9 +18,9 @@ module.exports = function (app) {
 			res.json(req.user.facebook);
 		});
 
-	app.route('/api/list/')
+	app.route('/api/attend/:loc/:id')
 		.get(clickHandler.getClicks)
-		.post(clickHandler.addClick)
+		.post((req, res) => clickHandler.attend(req.params.loc, req.params.id, res))
 		.delete(clickHandler.resetClicks);
 	
 	app.route('/api/list/:loc')
