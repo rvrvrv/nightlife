@@ -4,19 +4,15 @@ var Locations = require('../models/locations.js');
 
 function ClickHandler() {
 
-	this.getClicks = function(req, res) {
+	this.checkAttendees = function(reqLoc, reqUser, res) {
 		Locations
 			.findOne({
-				'github.id': req.user.github.id
-			}, {
-				'_id': false
+				'location': reqLoc
 			})
 			.exec(function(err, result) {
-				if (err) {
-					throw err;
-				}
-
-				res.json(result.nbrClicks);
+				if (err) throw err;
+				console.log(result);
+				res.json(result);
 			});
 	};
 
@@ -37,7 +33,6 @@ function ClickHandler() {
 			})
 			.exec(function(err, result) {
 				if (err) throw err;
-				console.log(result);
 				res.json({
 					location: result.location,
 					total: result.attendees.length,
@@ -64,7 +59,6 @@ function ClickHandler() {
 				if (err) throw err;
 				//If no one is attending, delete the document
 				if (!result.attendees.length) result.remove();
-				console.log(result);
 				res.json({
 					location: result.location,
 					total: result.attendees.length,

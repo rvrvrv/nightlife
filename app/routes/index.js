@@ -18,8 +18,8 @@ module.exports = function (app) {
 			res.json(req.user.facebook);
 		});
 
-	app.route('/api/attend/:loc/:id')
-		.get(clickHandler.getClicks)
+	app.route('/api/attend/:loc/:id?')
+		.get((req, res) => clickHandler.checkAttendees(req.params.loc, req.params.id, res))
 		.put((req, res) => clickHandler.attend(req.params.loc, req.params.id, res))
 		.delete((req, res) => clickHandler.unAttend(req.params.loc, req.params.id, res));
 	
