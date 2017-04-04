@@ -26,7 +26,7 @@ function displayBusinesses(data) {
                      <span class="card-title activator white-text">${e.name}
                      <i class="material-icons right">more_vert</i></span>
                      <p>${distance} mi.<a class="attendLink right" id="${e.id}"
-                        href="javascript:;" onclick="attend(this)">Attend&nbsp;<i class="fa fa-2x fa-star-o"></i></a></p>
+                        href="javascript:;" onclick="attend(this, true)">Attend&nbsp;<i class="fa fa-2x fa-star-o"></i></a></p>
                    </div>
                    <div class="card-reveal black">
                      <span class="card-title white-text">${e.name}
@@ -63,13 +63,19 @@ function search(location) {
 function updateAttending(data) {
    let results = JSON.parse(data);
    console.log(results);
-   console.log('Updating attendance stats...');
    //If attending
-   $(`#${results.location}`).html('&nbsp;<i class="fa fa-2x fa-star"></i>&nbsp;Going!');
+   if (results.action === 'attending') {
+      $(`#${results.location}`).html('&nbsp;<i class="fa fa-2x fa-star"></i>&nbsp;Going!');
+      $(`#${results.location}`).attr('onclick', 'attend(this)');
+   }
+   else {
+      $(`#${results.location}`).html('Attend&nbsp;<i class="fa fa-2x fa-star-o"></i>');
+      $(`#${results.location}`).attr('onclick', 'attend(this, true)'); 
+   }
 }
 
 //Handle attend link click
-function attend(link) {
+function attend(link, interested) {
    let userId = localStorage.getItem('rv-nightlife-id');
    //First, check to see if user is logged in
    if (!userId) {
@@ -77,10 +83,11 @@ function attend(link) {
       setTimeout(() => $('.fb-buttons').removeClass('shake'), 1000);
       return Materialize.toast('Please log in to attend events', 2000, 'error');
    }
-   //Then, update the database
-   ajaxFunctions.ajaxRequest('POST', `/api/attend/${link.getAttribute('id')}/${userId}`, updateAttending);
+   //Then, update the database (attend or unattend the location)
+   let method = interested ? 'PUT' : 'DELETE';
+   console.log(link);
+   ajaxFunctions.ajaxRequest(method, `/api/attend/${link.getAttribute('id')}/${userId}`, updateAttending);
 }
-
 
 //Handle search button click
 $btn.click(() => search($('#locationInput').val()));

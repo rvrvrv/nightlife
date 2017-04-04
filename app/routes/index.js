@@ -20,8 +20,8 @@ module.exports = function (app) {
 
 	app.route('/api/attend/:loc/:id')
 		.get(clickHandler.getClicks)
-		.post((req, res) => clickHandler.attend(req.params.loc, req.params.id, res))
-		.delete(clickHandler.resetClicks);
+		.put((req, res) => clickHandler.attend(req.params.loc, req.params.id, res))
+		.delete((req, res) => clickHandler.unAttend(req.params.loc, req.params.id, res));
 	
 	app.route('/api/list/:loc')
 		.get(function(req, res) { //Search via Yelp Fusion API

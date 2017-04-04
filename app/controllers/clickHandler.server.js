@@ -14,12 +14,8 @@ function ClickHandler () {
 			});
 	};
 
+	//Add user to list of attendees
 	this.attend = function (reqLoc, reqUser, res) {
-		console.log('Location: ' + reqLoc);
-		console.log('User: ' + reqUser);
-		//TO DO: Check if user is already attending location.
-		//If so, remove them and return negative response
-		//If not, add them and return positive response
 		Locations
 			.findOneAndUpdate({
 				'location': reqLoc
@@ -36,19 +32,34 @@ function ClickHandler () {
 				if (err) throw err;
 				console.log(result);
 				res.json({location: result.location,
-					total: result.attendees.length});
+					total: result.attendees.length,
+					action: 'attending'
+				});
 			});
 	};
 
-	this.resetClicks = function (req, res) {
+	//Remove user from list of attendees
+	this.unAttend = function (reqLoc, reqUser, res) {
 		Locations
-			.findOneAndUpdate({ 'github.id': req.user.github.id }, { 'nbrClicks.clicks': 0 })
-			.exec(function (err, result) {
-					if (err) { throw err; }
-
-					res.json(result.nbrClicks);
-				}
-			);
+			.findOneAndUpdate({
+				'location': reqLoc
+			}, {
+				$pull: {
+					'attendees': {
+						user: reqUser
+					}
+				},
+			},
+				{ new: true }
+			)
+			.exec(function(err, result) {
+				if (err) throw err;
+				console.log(result);
+				res.json({location: result.location,
+					total: result.attendees.length,
+					action: 'not attending'
+				});
+			});
 	};
 
 }
