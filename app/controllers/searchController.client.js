@@ -63,7 +63,7 @@ function search(location) {
 function updateAttending(data) {
    let results = JSON.parse(data);
    console.log(results);
-   //If attending
+   //Update link text and action based on attendance
    if (results.action === 'attending') {
       $(`#${results.location}`).html('&nbsp;<i class="fa fa-2x fa-star"></i>&nbsp;Going!');
       $(`#${results.location}`).attr('onclick', 'attend(this)');
@@ -85,7 +85,6 @@ function attend(link, interested) {
    }
    //Then, update the database (attend or unattend the location)
    let method = interested ? 'PUT' : 'DELETE';
-   console.log(link);
    ajaxFunctions.ajaxRequest(method, `/api/attend/${link.getAttribute('id')}/${userId}`, updateAttending);
 }
 

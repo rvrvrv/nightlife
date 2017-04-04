@@ -2,20 +2,26 @@
 
 var Locations = require('../models/locations.js');
 
-function ClickHandler () {
+function ClickHandler() {
 
-	this.getClicks = function (req, res) {
+	this.getClicks = function(req, res) {
 		Locations
-			.findOne({ 'github.id': req.user.github.id }, { '_id': false })
-			.exec(function (err, result) {
-				if (err) { throw err; }
+			.findOne({
+				'github.id': req.user.github.id
+			}, {
+				'_id': false
+			})
+			.exec(function(err, result) {
+				if (err) {
+					throw err;
+				}
 
 				res.json(result.nbrClicks);
 			});
 	};
 
 	//Add user to list of attendees
-	this.attend = function (reqLoc, reqUser, res) {
+	this.attend = function(reqLoc, reqUser, res) {
 		Locations
 			.findOneAndUpdate({
 				'location': reqLoc
@@ -25,13 +31,15 @@ function ClickHandler () {
 						user: reqUser
 					}
 				},
-			},
-				{ upsert: true, new: true }
-			)
+			}, {
+				upsert: true,
+				new: true
+			})
 			.exec(function(err, result) {
 				if (err) throw err;
 				console.log(result);
-				res.json({location: result.location,
+				res.json({
+					location: result.location,
 					total: result.attendees.length,
 					action: 'attending'
 				});
@@ -39,7 +47,7 @@ function ClickHandler () {
 	};
 
 	//Remove user from list of attendees
-	this.unAttend = function (reqLoc, reqUser, res) {
+	this.unAttend = function(reqLoc, reqUser, res) {
 		Locations
 			.findOneAndUpdate({
 				'location': reqLoc
@@ -49,19 +57,23 @@ function ClickHandler () {
 						user: reqUser
 					}
 				},
-			},
-				{ new: true }
-			)
+			}, {
+				new: true
+			})
 			.exec(function(err, result) {
 				if (err) throw err;
+				//If no one is attending, delete the document
+				if (!result.attendees.length) result.remove();
 				console.log(result);
-				res.json({location: result.location,
+				res.json({
+					location: result.location,
 					total: result.attendees.length,
 					action: 'not attending'
 				});
-			});
+			})
 	};
-
+	
 }
+
 
 module.exports = ClickHandler;
