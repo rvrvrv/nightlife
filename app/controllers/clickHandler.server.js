@@ -8,6 +8,9 @@ function ClickHandler() {
 		Locations
 			.findOne({
 				'location': reqLoc
+			}, {
+				_id: 0,
+				__v: 0
 			})
 			.exec(function(err, result) {
 				if (err) throw err;
@@ -23,9 +26,7 @@ function ClickHandler() {
 				'location': reqLoc
 			}, {
 				$addToSet: {
-					'attendees': {
-						user: reqUser
-					}
+					'attendees': reqUser
 				},
 			}, {
 				upsert: true,
@@ -48,10 +49,8 @@ function ClickHandler() {
 				'location': reqLoc
 			}, {
 				$pull: {
-					'attendees': {
-						user: reqUser
-					}
-				},
+					'attendees': reqUser
+				}
 			}, {
 				new: true
 			})
@@ -64,9 +63,9 @@ function ClickHandler() {
 					total: result.attendees.length,
 					action: 'not attending'
 				});
-			})
+			});
 	};
-	
+
 }
 
 
