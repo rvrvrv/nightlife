@@ -102,3 +102,9 @@ a {
     color: red;
     font-size: 1.3em;
 }
+
+.attendance {
+    position: fixed;
+    bottom: 0;
+    font-size: 1.7em;
+}

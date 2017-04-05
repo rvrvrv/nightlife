@@ -37,7 +37,7 @@ function displayBusinesses(data) {
                            <br><a href="tel:${e.phone}" target="_blank">${e.display_phone}</a>
                         </p>
                         <p><a class="yelp" href="${e.url}" target="_blank">View on Yelp&nbsp;<i class="fa fa-2x fa-yelp"></i></a></p>
-                        <p class="footer">0 attending</p>
+                        <p class="attendance"><span id="${e.id}-attendance">0</span>&nbsp;going</p>
                       </div>
                     </div>
                  </div>
@@ -46,7 +46,7 @@ function displayBusinesses(data) {
    });
    $btn.removeClass('disabled');
    $btn.html('Search');
-   setTimeout(() => checkAll(), list.length * 50);
+   setTimeout(() => checkAll(), list.length * 20);
 }
 
 //Search for results via GET request
@@ -70,7 +70,7 @@ function checkAll() {
       ajaxFunctions.ajaxRequest('GET', `/api/attend/${$(this)[0].id}/${userId}`, res => {
          let results = JSON.parse(res);
          if (!results) return; //If no data in DB, there are no stats to update
-         //If user is part of attendees, update the appropriate button
+         //If user is part of attendees, update the appropriate stats
          if (results.attendees.includes(userId)) {
             updateAttending({
                location: results.location,
@@ -88,7 +88,7 @@ function checkAll() {
 function updateAttending(data) {
    //If data is from server, it is a string to parse
    let results = (typeof(data) === 'string') ? JSON.parse(data) : data;
-   
+   console.log(results)
    //Update link text and action based on attendance
    if (results.action === 'attending') {
       $(`#${results.location}`).html(goingText);
@@ -98,6 +98,8 @@ function updateAttending(data) {
       $(`#${results.location}`).html(attendText);
       $(`#${results.location}`).attr('onclick', 'attend(this, true)');
    }
+   //Update attendance count
+      $(`#${results.location}-attendance`).html(results.total);
 }
 
 //Handle attend link click
