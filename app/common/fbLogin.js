@@ -1,5 +1,5 @@
 /*jshint browser: true, esversion: 6*/
-/* global $, FB, localStorage */
+/* global $, FB, localStorage, checkAll */
 
 window.fbAsyncInit = function() {
     FB.init({
@@ -43,25 +43,24 @@ function checkLoginState() {
 //Update page with logged-in user's info
 function loggedIn() {
     FB.api('/me?fields=first_name, last_name, picture', function(user) {
-        console.log(user);
         localStorage.setItem('rv-nightlife-id', user.id);
         $('#userInfo').html(`
         <li><img class="valign left-align" src="${user.picture.data.url}" alt="${user.first_name} ${user.last_name}"></li>
         <li class="hide-on-small-only">${user.first_name}</li>`);
         $('#loginBtn').hide();
         $('#logoutBtn').show();
+        checkAll(); //Update attendance stats for visible locations
     });
 }
 
 //Update page with logged-out view
 function loggedOut() {
+    localStorage.removeItem('rv-nightlife-id');
     $('#userInfo').empty();
     $('#logoutBtn').hide();
     $('#loginBtn').show();
+    checkAll(); //Update attendance stats for visible locations
 }
 
 //Log out the user
-$('#logoutBtn').click(() => FB.logout((resp) => {
-    localStorage.removeItem('rv-nightlife-id');
-    checkLoginState();
-}));
+$('#logoutBtn').click(() => FB.logout(resp => checkLoginState()));

@@ -12,9 +12,7 @@ function search(reqLocation, res) {
     client.search(searchRequest).then(response => {
       res.json(response.jsonBody.businesses);
     });
-  }).catch(e => {
-    console.log(e);
-  });
+  }).catch(e => console.error(e));
 }
 
 module.exports = search;

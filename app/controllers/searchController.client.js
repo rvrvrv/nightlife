@@ -7,7 +7,7 @@ const goingText = '&nbsp;<i class="fa fa-2x fa-star"></i>&nbsp;Going!</a>';
 const attendText = 'Attend&nbsp;<i class="fa fa-2x fa-star-o"></i></a>';
 let lastSearch = '';
 
-//Populate page with search results
+//Populate page with search results (called from search function)
 function displayBusinesses(data) {
    let list = JSON.parse(data);
    //Clear previous search results
@@ -15,7 +15,7 @@ function displayBusinesses(data) {
    list.forEach((e, i) => {
       //Convert and round distance (in meters) to miles
       let distance = (e.distance * 0.000621371192).toFixed(1);
-      //Display results
+      //Display results with staggered animation
       setTimeout(() => {
          $('#results').append(`
                <div class="col m6 l4 animated flipInX">
@@ -27,7 +27,7 @@ function displayBusinesses(data) {
                         <span class="card-title activator white-text">${e.name}
                         <i class="material-icons right">more_vert</i></span>
                         <p>${distance} mi.
-                        <a class="attendLink right" id="${e.id}" href="javascript:;" onclick="attend(this, true)">${attendText}</a>
+                        <a class="attendLink right hidden" id="${e.id}" href="javascript:;" onclick="attend(this, true)">${attendText}</a>
                         <br>
                       </div>
                       <div class="card-reveal black">
@@ -42,11 +42,14 @@ function displayBusinesses(data) {
                     </div>
                  </div>
             `);
-      }, i * 100);
+      }, i * 80);
    });
-   $btn.removeClass('disabled');
-   $btn.html('Search');
-   setTimeout(() => checkAll(), list.length * 20);
+   //After all results are displayed, update attendance stats and UI
+      setTimeout(() => {
+         checkAll();
+         $btn.removeClass('disabled');
+         $btn.html('Search');
+      }, list.length * 80);
 }
 
 //Search for results via GET request
@@ -62,44 +65,43 @@ function search(location) {
    lastSearch = location.trim().toLowerCase();
 }
 
-
 //Check all search results for attendance stats
 function checkAll() {
    let userId = localStorage.getItem('rv-nightlife-id') || null;
    $('.attendLink').each(function() {
       ajaxFunctions.ajaxRequest('GET', `/api/attend/${$(this)[0].id}/${userId}`, res => {
          let results = JSON.parse(res);
-         if (!results) return; //If no data in DB, there are no stats to update
-         //If user is part of attendees, update the appropriate stats
-         if (results.attendees.includes(userId)) {
-            updateAttending({
+         //If no data in DB, there are no stats to update
+         if (!results) return $(this).addClass('animated fadeInUp').removeClass('hidden');
+         //Otherwise, update the link and attendance stats
+         let userAction = (results.attendees.includes(userId)) ? 'attending' : 'no';
+         updateAttending({
                location: results.location,
                total: results.attendees.length,
-               action: 'attending'
+               action: userAction
             });
-         }
       });
    });
 }
 
-
-
 //Display user and guest attendance for each business
 function updateAttending(data) {
-   //If data is from server, it is a string to parse
+   //If data is from server, parse the string
    let results = (typeof(data) === 'string') ? JSON.parse(data) : data;
-   console.log(results)
+   let $loc = $(`#${results.location}`);
    //Update link text and action based on attendance
    if (results.action === 'attending') {
-      $(`#${results.location}`).html(goingText);
-      $(`#${results.location}`).attr('onclick', 'attend(this)');
+      $loc.html(goingText);
+      $loc.attr('onclick', 'attend(this)');
    }
    else {
-      $(`#${results.location}`).html(attendText);
-      $(`#${results.location}`).attr('onclick', 'attend(this, true)');
+      $loc.html(attendText);
+      $loc.attr('onclick', 'attend(this, true)');
    }
+   //Display the link
+   $loc.addClass('animated fadeInUp').removeClass('hidden');
    //Update attendance count
-      $(`#${results.location}-attendance`).html(results.total);
+   $(`#${results.location}-attendance`).html(results.total);
 }
 
 //Handle attend link click
