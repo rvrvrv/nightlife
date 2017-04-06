@@ -63,4 +63,4 @@ function loggedOut() {
 }
 
 //Log out the user
-$('#logoutBtn').click(() => FB.logout(resp => checkLoginState()));
+$('.logout-buttons').click(() => FB.logout(resp => checkLoginState()));
