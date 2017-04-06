@@ -49,6 +49,7 @@ function loggedIn() {
         <li class="hide-on-small-only">${user.first_name}</li>`);
         $('#loginBtn').hide();
         $('#logoutBtn').show();
+        $('#logoutLink').removeClass('hidden');
         checkAll(); //Update attendance stats for visible locations
     });
 }
@@ -59,6 +60,7 @@ function loggedOut() {
     $('#userInfo').empty();
     $('#logoutBtn').hide();
     $('#loginBtn').show();
+    $('#logoutLink').addClass('hidden');
     checkAll(); //Update attendance stats for visible locations
 }
 
