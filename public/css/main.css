@@ -98,6 +98,10 @@ body {
     line-height: 95% !important;
 }
 
+.business-img {
+    min-height: 250px;
+}
+
 .attendLink {
     transition: .3s all ease;
 }

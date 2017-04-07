@@ -14,18 +14,20 @@ function displayBusinesses(data) {
    //Clear previous search results and timer
    $('#results').empty();
    clearTimeout(timer);
-   
    //Display the results
    list.forEach((e, i) => {
       //Convert and round distance (in meters) to miles
       let distance = (e.distance * 0.000621371192).toFixed(1);
+      //If necessary, replace blank business image with placeholder
+      let imgUrl = (!e.image_url) ? '/public/img/blank.png' : e.image_url;
+      
       //Display results with staggered animation
       setTimeout(() => {
          $('#results').append(`
                <div class="col m6 l4 card-div animated fadeIn">
                   <div class="card small black">
                      <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="${e.image_url}" alt="${e.name}">
+                        <img class="activator business-img" src="${imgUrl}" alt="${e.name}">
                      </div>
                      <div class="card-content black">
                         <span class="card-title activator white-text">${e.name}
