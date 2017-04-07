@@ -23,7 +23,7 @@ function displayBusinesses(data) {
       //Display results with staggered animation
       setTimeout(() => {
          $('#results').append(`
-               <div class="col m6 l4 animated flipInX">
+               <div class="col m6 l4 animated fadeIn">
                   <div class="card small black">
                      <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator" src="${e.image_url}" alt="${e.name}">
@@ -47,7 +47,7 @@ function displayBusinesses(data) {
                     </div>
                  </div>
             `);
-      }, i * 80);
+      }, i * 150);
    });
    
    //After all results are displayed, update attendance stats and UI
@@ -69,7 +69,7 @@ function search(location) {
    
    //Finally, perform the search
    $btn.addClass('disabled');
-   $btn.html('<i class="fa fa-spinner fa-spin fa-fw"></i>&nbsp;Searching');
+   $btn.html('<i class="fa fa-spinner fa-spin fa-fw"></i>');
    ajaxFunctions.ajaxRequest('GET', `/api/list/${location}`, displayBusinesses);
    lastSearch = location.trim().toLowerCase();
   
