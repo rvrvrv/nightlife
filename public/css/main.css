@@ -104,6 +104,13 @@ a {
     font-size: 1.3em;
 }
 
+.yelp-logo {
+    width: 100px;
+    height: 64px;
+    vertical-align: -73%;
+    margin-left: -10px;
+}
+
 .attendance {
     position: fixed;
     bottom: 0;

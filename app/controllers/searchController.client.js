@@ -36,7 +36,7 @@ function displayBusinesses(data) {
                         <p>${e.location.display_address.join('<br>')}
                            <br><a href="tel:${e.phone}" target="_blank">${e.display_phone}</a>
                         </p>
-                        <p><a class="yelp" href="${e.url}" target="_blank">View on Yelp&nbsp;<i class="fa fa-2x fa-yelp"></i></a></p>
+                        <p><a class="yelp" href="${e.url}" target="_blank">View on <img class="yelp-logo" src="/public/img/yelp.png" alt="Yelp"></a></p>
                         <p class="attendance"><span id="${e.id}-attendance">0</span>&nbsp;going</p>
                       </div>
                     </div>
