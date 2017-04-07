@@ -39,7 +39,7 @@ body {
 }
 
 .fb-buttons {
-    margin: 10px 10px 40px 10px;
+    margin: 10px 10px 20px 10px;
     text-align: right;
 }
 
@@ -132,6 +132,12 @@ body {
     font-size: 1.7em;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 5px;
+    margin: 0 auto;
+}
 
 /* Animation */
 
@@ -183,20 +189,21 @@ body {
 }
 
 .shake {
-  animation-name: shake;
+    animation-name: shake;
 }
 
 @keyframes shake {
-  from, to {
-    transform: translate3d(0, 0, 0);
-  }
-
-  30%, 60%, 90% {
-    transform: translate3d(8px, 0, 0);
-  }
-  
-  45%, 75% {
-    transform: translate3d(-8px, 0, 0);
-  }
+    from,
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+    30%,
+    60%,
+    90% {
+        transform: translate3d(8px, 0, 0);
+    }
+    45%,
+    75% {
+        transform: translate3d(-8px, 0, 0);
+    }
 }
-

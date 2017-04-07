@@ -48,15 +48,16 @@ function displayBusinesses(data) {
                     </div>
                  </div>
             `);
-      }, i * 150);
+      }, i * 100);
    });
    
    //After all results are displayed, update attendance stats and UI
       setTimeout(() => {
          checkAll();
+         $('.progress').addClass('hidden');
          $btn.removeClass('disabled');
          $btn.html('Search');
-      }, list.length * 80);
+      }, list.length * 100);
 }
 
 //Search for results via GET request
@@ -68,8 +69,9 @@ function search(location) {
    if (location.trim().toLowerCase() === lastSearch) 
       return Materialize.toast('Please enter a new location', 3000, 'error');
    
-   //Finally, perform the search
+   //Update the UI and perform the search
    $('.card-div').addClass('fadeOut');
+   $('.progress').removeClass('hidden');
    $btn.addClass('disabled');
    $btn.html('<i class="fa fa-spinner fa-spin fa-fw"></i>');
    ajaxFunctions.ajaxRequest('GET', `/api/list/${location}`, displayBusinesses);
@@ -106,6 +108,7 @@ function checkAll() {
 
 //Display user and guest attendance for each business
 function updateAttending(data) {
+   console.log(data);
    //If data is from server, parse the string
    let results = (typeof(data) === 'string') ? JSON.parse(data) : data;
    let $loc = $(`#${results.location}`);
