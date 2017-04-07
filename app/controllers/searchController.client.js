@@ -6,12 +6,17 @@ const $btn = $('#searchBtn');
 const goingText = '&nbsp;<i class="fa fa-2x fa-star"></i>&nbsp;Going!</a>';
 const attendText = 'Attend&nbsp;<i class="fa fa-2x fa-star-o"></i></a>';
 let lastSearch = '';
+let timer;
 
 //Populate page with search results (called from search function)
 function displayBusinesses(data) {
    let list = JSON.parse(data);
-   //Clear previous search results
+   
+   //Clear previous search results and timer
    $('#results').empty();
+   clearTimeout(timer);
+   
+   //Display the results
    list.forEach((e, i) => {
       //Convert and round distance (in meters) to miles
       let distance = (e.distance * 0.000621371192).toFixed(1);
@@ -44,6 +49,7 @@ function displayBusinesses(data) {
             `);
       }, i * 80);
    });
+   
    //After all results are displayed, update attendance stats and UI
       setTimeout(() => {
          checkAll();
@@ -54,15 +60,27 @@ function displayBusinesses(data) {
 
 //Search for results via GET request
 function search(location) {
-   //First, ensure search field is populated
-   if (!location.trim()) return Materialize.toast('Please enter a valid location', 3000, 'error');
+   //First, ensure search field is populated and doesn't contain invalid characters
+   if (!location.trim() || location.match(/[^a-zA-Z0-9.,\-\s]/)) 
+      return Materialize.toast('Please enter a valid location', 3000, 'error');
    //Then, ensure user entered a new location (to prevent duplicate requests)
-   if (location.trim().toLowerCase() === lastSearch) return Materialize.toast('Please enter a new location', 3000, 'error');
-   //If a new valid location was entered, perform the search
+   if (location.trim().toLowerCase() === lastSearch) 
+      return Materialize.toast('Please enter a new location', 3000, 'error');
+   
+   //Finally, perform the search
    $btn.addClass('disabled');
    $btn.html('<i class="fa fa-spinner fa-spin fa-fw"></i>&nbsp;Searching');
    ajaxFunctions.ajaxRequest('GET', `/api/list/${location}`, displayBusinesses);
    lastSearch = location.trim().toLowerCase();
+  
+  //7-second timer to prevent search hang-up
+   timer = setTimeout(() => {
+         Materialize.toast('Search took too long. Please try again.', 3000, 'error');
+         lastSearch = '';
+         $('#locationInput').val('');
+         $btn.removeClass('disabled');
+         $btn.html('Search');
+   }, 7000);
 }
 
 //Check all search results for attendance stats
