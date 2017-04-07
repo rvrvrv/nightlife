@@ -93,6 +93,9 @@ body {
     background: #4527a0;
 }
 
+#welcome {
+    font-size: 1.2em;
+}
 .card-title {
     font-size: 1.3em !important;
     line-height: 95% !important;
@@ -138,6 +141,7 @@ footer {
     right: 5px;
     margin: 0 auto;
 }
+
 
 /* Animation */
 

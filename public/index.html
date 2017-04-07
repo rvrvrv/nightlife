@@ -32,12 +32,12 @@
   <div class="container">
     <form id="locationForm">
       <div class="row">
-        <div class="input-field col s8">
+        <div class="input-field col s9">
           <i class="prefix fa fa-3x fa-moon-o"></i>
           <input id="locationInput" type="text" class="white-text tooltipped" data-delay="50" data-tooltip="Enter a location here">
           <label for="locationInput">City Name, Zip Code, etc.</label>
         </div>
-        <div class="input-field col s4">
+        <div class="input-field col s3">
           <a class="btn waves-effect waves-purp tooltipped" id="searchBtn" data-delay="350" data-tooltip="Find local bars, clubs, and restaurants">Search
           </a>
         </div>
@@ -48,7 +48,16 @@
     <div class="indeterminate deep-purple lighten-2"></div>
   </div>
   <div class="row" id="results">
-    <h6>Welcome to the Nightlife App! To get started, enter a location in the search field (look up!). Then, check out the local scene. See how many people are attending each location, and let others know you'll be there!</h6>
+    <div class="row">
+      <div class="col s12 m8 l6 offset-m1 offset-l2">
+        <div class="card-panel z-depth-5 deep-purple darken-4">
+          <span class="white-text" id="welcome">Welcome to the Nightlife App! To get started, 
+          enter a location in the search field. Then, check out the local scene. 
+          See how many people are attending each location, and let others know you'll be there!
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
   <footer>Powered by <a href="https://www.yelp.com/developers" target="_blank">Yelp Fusion API</a></footer>
 </body>

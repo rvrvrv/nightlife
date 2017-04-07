@@ -48,7 +48,7 @@ function displayBusinesses(data) {
                     </div>
                  </div>
             `);
-      }, i * 100);
+      }, i * 80);
    });
    
    //After all results are displayed, update attendance stats and UI
@@ -108,7 +108,6 @@ function checkAll() {
 
 //Display user and guest attendance for each business
 function updateAttending(data) {
-   console.log(data);
    //If data is from server, parse the string
    let results = (typeof(data) === 'string') ? JSON.parse(data) : data;
    let $loc = $(`#${results.location}`);
