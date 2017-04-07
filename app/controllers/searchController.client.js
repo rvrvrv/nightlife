@@ -82,7 +82,7 @@ function search(location) {
          Materialize.toast('Search took too long. Please try again.', 3000, 'error');
          lastSearch = '';
          $('#locationInput').val('');
-         $('.progress').removeClass('hidden');
+         $('.progress').addClass('hidden');
          $btn.removeClass('disabled');
          $btn.html('Search');
    }, 7000);
