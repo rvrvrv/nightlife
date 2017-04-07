@@ -11,7 +11,6 @@ let timer;
 //Populate page with search results (called from search function)
 function displayBusinesses(data) {
    let list = JSON.parse(data);
-   
    //Clear previous search results and timer
    $('#results').empty();
    clearTimeout(timer);
@@ -23,7 +22,7 @@ function displayBusinesses(data) {
       //Display results with staggered animation
       setTimeout(() => {
          $('#results').append(`
-               <div class="col m6 l4 animated fadeIn">
+               <div class="col m6 l4 card-div animated fadeIn">
                   <div class="card small black">
                      <div class="card-image waves-effect waves-block waves-light">
                         <img class="activator" src="${e.image_url}" alt="${e.name}">
@@ -68,6 +67,7 @@ function search(location) {
       return Materialize.toast('Please enter a new location', 3000, 'error');
    
    //Finally, perform the search
+   $('.card-div').addClass('fadeOut');
    $btn.addClass('disabled');
    $btn.html('<i class="fa fa-spinner fa-spin fa-fw"></i>');
    ajaxFunctions.ajaxRequest('GET', `/api/list/${location}`, displayBusinesses);

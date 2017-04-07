@@ -12,6 +12,7 @@ body {
     background: #222;
     color: #fff;
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .hidden {
@@ -132,6 +133,7 @@ body {
 
 .animated {
     animation-duration: .5s;
+    animation-fill-mode: both;
 }
 
 .fadeIn {
@@ -144,6 +146,20 @@ body {
     }
     to {
         opacity: 1;
+    }
+}
+
+.fadeOut {
+    animation-name: fadeOut;
+    animation-duration: .5s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
 
@@ -161,3 +177,22 @@ body {
         transform: none;
     }
 }
+
+.shake {
+  animation-name: shake;
+}
+
+@keyframes shake {
+  from, to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  30%, 60%, 90% {
+    transform: translate3d(8px, 0, 0);
+  }
+  
+  45%, 75% {
+    transform: translate3d(-8px, 0, 0);
+  }
+}
+
