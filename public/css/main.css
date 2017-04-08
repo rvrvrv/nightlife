@@ -63,10 +63,6 @@ body {
     background: #300;
 }
 
-#locationInput {
-    font-size: 2em;
-}
-
 .input-field input[type=text]:focus+label {
     color: #fff;
 }
@@ -83,6 +79,14 @@ body {
 
 .input-field .prefix.active {
     color: #4527a0;
+}
+
+#locationInput {
+    font-size: 2em;
+}
+
+#searchBtn {
+    padding: 0 3vw;
 }
 
 #searchBtn:hover {
