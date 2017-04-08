@@ -1,30 +1,27 @@
 'use strict';
 
-var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
-var yelpSearch = require(path + '/app/controllers/yelpSearch.server.js');
+const path = process.cwd();
+const ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
+const yelpSearch = require(path + '/app/controllers/yelpSearch.server.js');
 
-module.exports = function (app) {
+module.exports = (app) => {
 
-	var clickHandler = new ClickHandler();
+	let clickHandler = new ClickHandler();
 
 	app.route('/')
-		.get(function (req, res) {
+		.get((req, res) => {
 			res.sendFile(path + '/public/index.html');
 		});
-
-	app.route('/api/:id')
-		.get(function (req, res) {
-			res.json(req.user.facebook);
-		});
-
+	
+	//Attendance routes
 	app.route('/api/attend/:loc/:id?')
 		.get((req, res) => clickHandler.checkAttendees(req.params.loc, req.params.id, res))
 		.put((req, res) => clickHandler.attend(req.params.loc, req.params.id, res))
 		.delete((req, res) => clickHandler.unAttend(req.params.loc, req.params.id, res));
 	
+	//Search via Yelp Fusion API
 	app.route('/api/list/:loc')
-		.get(function(req, res) { //Search via Yelp Fusion API
+		.get((req, res) => { 
 			yelpSearch(req.params.loc, res);
 		});
 };
