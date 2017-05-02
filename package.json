@@ -1,6 +1,6 @@
 {
   "name": "rv-nightlife",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Nightlife Coordination App Project for FreeCodeCamp",
   "main": "server.js",
   "repository": {
