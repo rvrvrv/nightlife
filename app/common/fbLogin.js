@@ -6,7 +6,7 @@ window.fbAsyncInit = function() {
         appId: 1845310775708094,
         cookie: true,
         xfbml: true,
-        version: 'v2.8'
+        version: 'v2.9'
     });
 
     FB.getLoginStatus(function(response) {
