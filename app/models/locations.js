@@ -1,11 +1,1 @@
-'use strict';
-
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-const Location = new Schema({
-	location: String,
-	attendees: [ String ]
-});
-
-module.exports = mongoose.model('Location', Location);
+'use strict';var mongoose=require('mongoose'),Schema=mongoose.Schema,Location=new Schema({location:String,attendees:[String]});module.exports=mongoose.model('Location',Location);

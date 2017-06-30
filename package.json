@@ -1,6 +1,6 @@
 {
   "name": "rv-nightlife",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Nightlife Coordination App Project for FreeCodeCamp",
   "main": "server.js",
   "repository": {
@@ -8,6 +8,7 @@
     "url": "git+https://github.com/rvrvrv/rv-nightlife"
   },
   "scripts": {
+    "build": "babel src -d app",
     "start": "node server.js"
   },
   "author": "rvrvrv",
@@ -19,5 +20,10 @@
     "path": "^0.12.7",
     "serve-favicon": "^2.4.2",
     "yelp-fusion": "^1.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-babili": "^0.1.4",
+    "babel-preset-env": "^1.5.2"
   }
 }

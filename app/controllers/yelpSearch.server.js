@@ -1,18 +1,1 @@
-'use strict';
-
-const yelp = require('yelp-fusion');
-
-function search(reqLocation, res) {
-  let searchRequest = {
-    term: 'nightlife',
-    location: reqLocation
-  };
-  yelp.accessToken(process.env.YELP_APP_ID, process.env.YELP_APP_SECRET).then(response => {
-    const client = yelp.client(response.jsonBody.access_token);
-    client.search(searchRequest).then(response => {
-      res.json(response.jsonBody.businesses);
-    });
-  }).catch(e => console.error(e));
-}
-
-module.exports = search;
+'use strict';var yelp=require('yelp-fusion');function search(a,b){var c={term:'nightlife',location:a};yelp.accessToken(process.env.YELP_APP_ID,process.env.YELP_APP_SECRET).then(function(a){var d=yelp.client(a.jsonBody.access_token);d.search(c).then(function(a){b.json(a.jsonBody.businesses)})}).catch(function(a){return console.error(a)})}module.exports=search;
