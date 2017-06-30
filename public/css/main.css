@@ -34,8 +34,8 @@ body {
 }
 
 #userInfo img {
+    margin-top: 15%;
     border-radius: 5px;
-    margin-top: 5%;
 }
 
 .fb-buttons {
@@ -214,5 +214,12 @@ footer {
     45%,
     75% {
         transform: translate3d(-8px, 0, 0);
+    }
+}
+
+/* Navbar image adjustment during materialize hide-on-small-only */
+@media only screen and (max-width: 600px) {
+    #userInfo img{
+        margin-top: 5%;
     }
 }
