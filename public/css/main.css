@@ -38,6 +38,10 @@ footer {
   padding: 3px 3px 0;
 }
 
+i.right {
+  margin-left: 0;
+}
+
 .hidden {
   display: none;
 }
@@ -125,9 +129,19 @@ footer {
   font-size: 1.2em;
 }
 
+.card .card-content {
+  padding: 18px 2px 18px 8px;
+}
+
 .card .card-content .card-title {
   font-size: 1.3em;
   line-height: 95%;
+}
+
+.btm-right-text {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
 }
 
 .business-img {

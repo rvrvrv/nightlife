@@ -28,7 +28,7 @@ function displayBusinesses(data) {
             <div class="card-content black">
               <span class="card-title activator white-text">${e.name}<i class="material-icons right">more_vert</i></span>
               <p>${distance} mi.</p>
-              <p><a class="attend-link right hidden" id="${e.id}" href="javascript:;" onclick="attend(this, true)">${attendText}</a></p>
+              <p class="btm-right-text"><a class="attend-link right hidden" id="${e.id}" href="javascript:;" onclick="attend(this, true)">${attendText}</a></p>
             </div>
             <div class="card-reveal black">
               <span class="card-title white-text">${e.name}
