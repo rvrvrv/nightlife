@@ -1,227 +1,236 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
-    background: #222;
-    color: #fff;
-    overflow-x: hidden;
-    overflow-y: scroll;
+  background: #222;
+  color: #fff;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
-.hidden {
-    display: none;
+a:not(.btn) {
+  color: #7e57c2;
+  transition: .3s color;
 }
 
-.error {
-    background: #a00;
+a:not(.btn):hover {
+  color: #b39ddb;
 }
 
-.navbar-fixed {
-    user-select: none;
-    cursor: default;
-}
-
-#userInfo li {
-    margin-right: 10px;
-    font-size: 2em;
-}
-
-#userInfo img {
-    margin-top: 15%;
-    border-radius: 5px;
-}
-
-.fb-buttons {
-    margin: 10px 10px 20px 10px;
-    text-align: right;
-}
-
-.fa {
-    vertical-align: bottom;
-}
-
-.btn {
-    background: #000;
-}
-
-#logoutBtn {
-    position: fixed;
-    right: 0;
-    margin-top: -5px;
-    padding: 0 15px;
-    text-transform: capitalize;
-}
-
-#logoutBtn:hover {
-    background: #300;
-}
-
-.input-field input[type=text]:focus+label {
-    color: #fff !important;
-}
-
-.input-field input[type=text]:focus {
-    border-bottom: 1px solid #fff !important;
-    box-shadow: 0 1px 0 0 #fff !important;
-}
-
-.input-field input[type=text].valid {
-    border-bottom: 1px solid #311b92 !important;
-    box-shadow: 0 1px 0 0 #311b92 !important;
-}
-
-.input-field .prefix.active {
-    color: #927adc;
-}
-
-#locationInput {
-    font-size: 2em;
-}
-
-#searchBtn {
-    padding: 0 3vw;
-}
-
-#searchBtn:hover {
-    background: #311b92;
-}
-
-#searchBtn.waves-ripple {
-    background: #4527a0;
-}
-
-#welcome {
-    font-size: 1.2em;
-}
-
-.card-title {
-    font-size: 1.3em !important;
-    line-height: 95% !important;
-}
-
-.business-img {
-    min-height: 250px;
-}
-
-.attendLink {
-    transition: .3s all ease;
-}
-
-.attendLink:hover {
-    color: #fff;
-}
-
-.attendLink:active {
-    color: #b39ddb;
-}
-
-.yelp {
-    color: red;
-    font-size: 1.3em;
-}
-
-.yelp-logo {
-    width: 100px;
-    height: 64px;
-    vertical-align: -73%;
-    margin-left: -10px;
-}
-
-.attendance {
-    position: fixed;
-    bottom: 0;
-    font-size: 1.7em;
+a:not(.btn):active {
+  color: #d1c4e9;
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    right: 5px;
-    margin: 0 auto;
+  background: #222;
+  border-top-left-radius: 3px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 3px 3px 0;
 }
 
+.hidden {
+  display: none;
+}
+
+.error {
+  background: #a00;
+}
+
+.navbar-fixed {
+  user-select: none;
+  cursor: default;
+}
+
+.user-info li {
+  margin-right: 10px;
+  font-size: 2em;
+}
+
+.user-info img {
+  margin-top: 15%;
+  border-radius: 5px;
+}
+
+.fb-buttons {
+  margin: 10px 10px 20px 10px;
+  text-align: right;
+}
+
+.fa {
+  vertical-align: bottom;
+}
+
+.btn {
+  background: #000;
+}
+
+.fb-buttons .logout-buttons {
+  position: fixed;
+  right: 0;
+  margin-top: -5px;
+  padding: 0 15px;
+  text-transform: capitalize;
+}
+
+.fb-buttons .logout-buttons:hover {
+  background: #300;
+}
+
+
+.input-field input {
+  font-size: 2em;
+}
+
+.input-field input[type=text]:focus+label {
+  color: #fff !important;
+}
+
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #fff !important;
+  box-shadow: 0 1px 0 0 #fff !important;
+}
+
+.input-field input[type=text].valid {
+  border-bottom: 1px solid #311b92 !important;
+  box-shadow: 0 1px 0 0 #311b92 !important;
+}
+
+.input-field .prefix.active {
+  color: #927adc;
+}
+
+.btn.search {
+  padding: 0 3vw;
+}
+
+.btn.search:hover {
+  background: #311b92;
+}
+
+.btn.search.waves-ripple {
+  background: #4527a0;
+}
+
+.welcome {
+  font-size: 1.2em;
+}
+
+.card-title {
+  font-size: 1.3em !important;
+  line-height: 95% !important;
+}
+
+.business-img {
+  min-height: 250px;
+}
+
+.yelp {
+  color: red;
+  font-size: 1.3em;
+}
+
+.yelp-logo {
+  width: 100px;
+  height: 64px;
+  vertical-align: -73%;
+  margin-left: -10px;
+}
+
+.attendance {
+  position: fixed;
+  bottom: 0;
+  font-size: 1.7em;
+}
 
 /* Animation */
 
 .animated {
-    animation-duration: .5s;
-    animation-fill-mode: both;
+  animation-duration: .5s;
+  animation-fill-mode: both;
 }
 
 .fadeIn {
-    animation-name: fadeIn;
+  animation-name: fadeIn;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .fadeOut {
-    animation-name: fadeOut;
-    animation-duration: .5s;
+  animation-name: fadeOut;
+  animation-duration: .5s;
 }
 
 @keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
 }
 
 .fadeInUp {
-    animation-name: fadeInUp;
+  animation-name: fadeInUp;
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translate3d(0, 100%, 0);
-    }
-    to {
-        opacity: 1;
-        transform: none;
-    }
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .shake {
-    animation-name: shake;
+  animation-name: shake;
 }
 
 @keyframes shake {
-    from,
-    to {
-        transform: translate3d(0, 0, 0);
-    }
-    30%,
-    60%,
-    90% {
-        transform: translate3d(8px, 0, 0);
-    }
-    45%,
-    75% {
-        transform: translate3d(-8px, 0, 0);
-    }
-}
 
+  from,
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+
+  30%,
+  60%,
+  90% {
+    transform: translate3d(8px, 0, 0);
+  }
+
+  45%,
+  75% {
+    transform: translate3d(-8px, 0, 0);
+  }
+}
 
 /* Navbar image adjustment during materialize hide-on-small-only */
 
 @media only screen and (max-width: 600px) {
-    #userInfo img {
-        margin-top: 5%;
-    }
+  .user-info img {
+    margin-top: 5%;
+  }
 }
