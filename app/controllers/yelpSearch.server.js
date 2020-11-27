@@ -1,1 +1,1 @@
-'use strict';var yelp=require('yelp-fusion');function search(a,b){var c=yelp.client(process.env.YELP_API_KEY);c.search({term:'nightlife',location:a}).then(function(a){return b.json(a.jsonBody.businesses)}).catch(function(a){return console.error(a)})}module.exports=search;
+"use strict";var yelp=require("yelp-fusion");function search(a,b){var c=yelp.client(process.env.YELP_API_KEY);c.search({term:"nightlife",location:a}).then(function(a){return b.json(a.jsonBody.businesses)}).catch(function(a){return console.error(a)})}module.exports=search;

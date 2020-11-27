@@ -1,1 +1,1 @@
-'use strict';var mongoose=require('mongoose'),Schema=mongoose.Schema,Location=new Schema({location:String,attendees:[String]});module.exports=mongoose.model('Location',Location);
+"use strict";var mongoose=require("mongoose"),Schema=mongoose.Schema,Location=new Schema({location:String,attendees:[String]});module.exports=mongoose.model("Location",Location);
