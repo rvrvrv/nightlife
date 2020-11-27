@@ -7,7 +7,7 @@ const routes = require('./app/routes/index.js');
 const app = express();
 require('dotenv').load();
 
-mongoose.connect(process.env.MONGO_URI, { useMongoClient: true });
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
