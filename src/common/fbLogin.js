@@ -36,7 +36,7 @@ function loggedIn() {
   FB.api('/me?fields=first_name, last_name, picture', (user) => {
     localStorage.setItem('rv-nightlife-id', user.id);
     $('.user-info').html(`
-      <li><img class="valign left-align" src="${user.picture.data.url}" alt="${user.first_name} ${user.last_name}"></li>
+      <li><img src="${user.picture.data.url}" alt="${user.first_name} ${user.last_name}"></li>
       <li class="hide-on-small-only">${user.first_name}</li>`);
     $('#loginBtn').hide();
     $('#logoutBtn').show();

@@ -56,12 +56,14 @@ i.right {
 }
 
 .user-info li {
+  display: flex;
   margin-right: 10px;
   font-size: 2em;
 }
 
 .user-info img {
-  margin-top: 15%;
+  height: 50px;
+  width: 50px;
   border-radius: 5px;
 }
 
