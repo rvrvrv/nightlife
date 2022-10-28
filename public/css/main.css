@@ -55,6 +55,10 @@ i.right {
   cursor: default;
 }
 
+.nav-wrapper .logout-buttons {
+  font-weight: 500;
+}
+
 .user-info li {
   display: flex;
   margin-right: 10px;
@@ -91,7 +95,6 @@ i.right {
 .fb-buttons .logout-buttons:hover {
   background: #300;
 }
-
 
 .input-field input {
   font-size: 2em;
