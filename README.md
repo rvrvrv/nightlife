@@ -1,7 +1,7 @@
 # nightlife
 Nightlife Coordination App Project for FreeCodeCamp
 
-**Live App**: https://rv-nightlife.herokuapp.com
+**Live App**: https://nightlife-rv.onrender.com
 
 ## User Stories:
 1. As an unauthenticated user, I can view all bars in my area.
